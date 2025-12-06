@@ -1,5 +1,21 @@
 <img width="876" height="544" alt="image" src="https://github.com/user-attachments/assets/79f6669a-d0b3-47db-8b3f-0f38cf0b97b2" />
 
+## 📝 更新日志
+
+### 2025-12-06
+- **新增命令**：增加 `/ai-code`（Claude+Codex快速开发）和 `/ai-review`（Claude+Gemini代码审查）两个精简版命令
+- **文档整合**：docs目录从12个文件精简到5个核心文档，删除冗余博客文章
+- **文档去重**：移除installation.md、claude-code-specs.md、README.md中的重复内容
+- **新增规范**：skill增加「完成后规范」，要求每次更新后记录更新日志
+- **usage.md增强**：整合多模型协作规范（Codex/Gemini分工指南）
+
+### 2025-12-05
+- **项目初始化**：创建智能多CLI编排系统
+- **MCP Server**：实现Codex和Gemini的MCP封装
+- **5种集成方式**：Command、Skill、MCP、Subagent、Hooks
+- **JWT认证模块**：完整的用户认证示例代码
+
+---
 
 # 智能多CLI编排系统 (AI Orchestrator)
 
@@ -238,23 +254,6 @@ ruff format src/ tests/
 **CC BY-NC 4.0** (署名-非商业性使用)
 
 本项目仅供学习和个人使用，**禁止商业用途**。如需商业授权请联系作者。
-
----
-
-## 📝 更新日志
-
-### 2025-12-06
-- **新增命令**：增加 `/ai-code`（Claude+Codex快速开发）和 `/ai-review`（Claude+Gemini代码审查）两个精简版命令
-- **文档整合**：docs目录从12个文件精简到5个核心文档，删除冗余博客文章
-- **文档去重**：移除installation.md、claude-code-specs.md、README.md中的重复内容
-- **新增规范**：skill增加「完成后规范」，要求每次更新后记录更新日志
-- **usage.md增强**：整合多模型协作规范（Codex/Gemini分工指南）
-
-### 2025-12-05
-- **项目初始化**：创建智能多CLI编排系统
-- **MCP Server**：实现Codex和Gemini的MCP封装
-- **5种集成方式**：Command、Skill、MCP、Subagent、Hooks
-- **JWT认证模块**：完整的用户认证示例代码
 
 ---
 
