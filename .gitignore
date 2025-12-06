@@ -3,10 +3,6 @@
 
 # 文章文件（不提交）
 2025-*.md
-docs/3CLI.MD
-docs/3CLI2.MD
-docs/codex.MD
-docs/gemini.MD
 
 # Node modules
 node_modules/

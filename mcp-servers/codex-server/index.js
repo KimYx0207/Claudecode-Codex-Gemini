@@ -40,9 +40,15 @@ if (fs.existsSync(CONFIG_FILE)) {
     if (!CONFIG.codex) {
       CONFIG.codex = { command: 'codex', defaultArgs: ['exec', '--skip-git-repo-check'], sandbox: 'workspace-write', approvalPolicy: 'on-failure', timeout: 300000 };
     }
+    // Log successful config load after log function is defined
+    setTimeout(() => log(`配置文件加载成功: ${CONFIG_FILE}`), 0);
   } catch (e) {
-    // 使用默认配置
+    // Log config parse error - use console.error since log() may not be ready
+    console.error(`[WARN] 配置文件解析失败: ${CONFIG_FILE}, 错误: ${e.message}, 使用默认配置`);
   }
+} else {
+  // Config file not found, using defaults
+  console.error(`[INFO] 配置文件不存在: ${CONFIG_FILE}, 使用默认配置`);
 }
 
 const CONTEXT_DIR = path.join(

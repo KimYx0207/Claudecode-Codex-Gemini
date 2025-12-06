@@ -1,46 +1,31 @@
 name: ai-orchestrator
 description: |
-  多AI协作编排技能 - 自动协调Claude、Codex、Gemini完成需求分析→代码生成→代码审查工作流
+  多AI协作编排技能 - 提供3种编排模式，按需选择
 
-  【核心触发场景】
-  - 开发任务、写代码、实现功能、编程任务
-  - 新功能开发、功能实现、代码实现
-  - 重构、优化代码、代码改进
-  - Bug修复、问题修复、错误处理
-  - 系统设计、架构设计、模块设计
+  【3种编排命令】
+  1. /ai-team   = Claude + Codex + Gemini（完整三引擎：分析→生成→审查）
+  2. /ai-code   = Claude + Codex（快速开发：分析→生成，无审查）
+  3. /ai-review = Claude + Gemini（代码审查：分析→审查，无生成）
 
-  【显式触发词】
-  - "AI编排"、"ai编排"、"多AI协作"、"三引擎"、"三AI"
-  - "codex"、"gemini"、"ai team"、"ai-team"
-  - "协作开发"、"编排流程"
+  【选择指南】
+  - 生产级代码 → /ai-team（完整流程，质量最高）
+  - 快速原型 → /ai-code（跳过审查，速度最快）
+  - 审查现有代码 → /ai-review（专注审查，最细致）
 
-  【任务类型触发】
-  - 实现XXX功能、开发XXX模块、写一个XXX
-  - 创建XXX、构建XXX、搭建XXX
-  - 添加XXX功能、新增XXX特性
-  - 修改XXX、更新XXX、升级XXX
-  - 修复XXX、解决XXX问题
-  - 重构XXX、优化XXX性能
-  - 设计XXX架构、规划XXX系统
+  【输出目录】
+  所有中间结果保存在 .ai-orchestrator/ 目录，可追溯、可回滚
 
-  【技术任务触发】
-  - API开发、接口实现、后端开发、前端开发
-  - 数据库设计、表结构、CRUD操作
-  - 用户认证、登录注册、权限控制
-  - 文件处理、数据导入导出
-  - 第三方集成、SDK接入
-
-  特点：
-  - 完整的3阶段流程（分析→生成→审查）
-  - 自动保存中间结果（可追溯）
-  - 详细的执行日志
-  - 错误重试和优雅降级
+  【完成后规范】
+  每次完成任务后，必须在 README.md 的「更新日志」章节添加更新记录：
+  - 格式：`### YYYY-MM-DD` + 更新内容摘要
+  - 内容：简述本次完成的功能、修复的问题、重构的模块等
+  - 位置：README.md 底部的「📝 更新日志」章节，最新的放最上面
 
 version: "1.0.0"
 
 author: 老金
 
-# 技能命令配置
+# Skill command configuration
 commands:
   - name: orchestrate
     description: 启动AI多引擎编排流程
@@ -51,29 +36,22 @@ commands:
         required: true
         type: string
 
-# 依赖工具
+# Dependencies
 dependencies:
   required:
-    - claude  # Claude Code（已安装）
+    - claude  # Claude Code (installed)
   optional:
-    - codex   # Codex CLI（代码生成）
-    - gemini  # Gemini CLI（代码审查）
+    - codex   # Codex CLI (code generation)
+    - gemini  # Gemini CLI (code review)
 
-# 配置选项
+# Configuration options
 config:
-  # 工作目录
   output_dir: ".ai-orchestrator"
-
-  # 是否自动清理临时文件
   auto_cleanup: false
-
-  # 是否生成详细日志
   verbose_logging: true
-
-  # 错误重试次数
   max_retries: 1
 
-# 使用示例
+# Usage examples
 examples:
   - name: 简单任务
     command: orchestrate "实现用户登录功能"

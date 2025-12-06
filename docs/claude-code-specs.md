@@ -204,26 +204,4 @@ skills: skill1, skill2              # 可选：自动加载的技能
 
 ---
 
-## 功能对比
-
-| 功能 | 触发方式 | 存储位置 | 隔离上下文 | 用途 |
-|------|---------|---------|-----------|------|
-| **Command** | 用户显式 `/cmd` | `.claude/commands/` | 否 | 预定义工作流 |
-| **Skill** | 模型自动 | `.claude/skills/` | 否 | 域特定指导 |
-| **Subagent** | 用户或模型 | `.claude/agents/` | 是 | 专门任务执行 |
-| **Hooks** | 事件自动触发 | `settings.json` | 否 | 规范执行 |
-| **MCP Server** | 工具自动供应 | `.mcp.json` | 否 | 扩展能力 |
-
----
-
-## 本项目兼容性检查清单
-
-- [ ] Command: `.claude/commands/ai-team.md` 格式正确
-- [ ] Skill: `.claude/skills/ai-orchestrator/` 需要SKILL.md而非skill.yaml
-- [ ] MCP: 需要创建`.mcp.json`配置文件
-- [ ] Hooks: 可选，用于自动格式化等
-- [ ] Subagent: 可选，用于任务专门化
-
----
-
-文档版本：2025-12-04
+> 📊 **想了解5种方式的详细对比？** 请查看 [方式对比](comparison.md)

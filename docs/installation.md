@@ -309,80 +309,16 @@ cd path/to/ai-orchestrator
 
 ---
 
-## 故障排查
-
-### 问题1：command not found: claude
-
-**原因**：npm全局安装路径不在PATH中
-
-**解决方法**：
-
-```bash
-# 查看npm全局路径
-npm config get prefix
-
-# 将路径添加到PATH
-# macOS/Linux
-export PATH="$(npm config get prefix)/bin:$PATH"
-
-# 写入配置文件持久化
-echo 'export PATH="$(npm config get prefix)/bin:$PATH"' >> ~/.bashrc
-source ~/.bashrc
-```
-
-### 问题2：Codex提示"需要ChatGPT Plus订阅"
-
-**原因**：Codex CLI需要付费订阅
-
-**解决方法**：
-1. 订阅ChatGPT Plus（$20/月）
-2. 或使用中转站（见上文配置）
-
-### 问题3：Gemini提示"超过免费配额"
-
-**原因**：使用API Key方式只有100次/天
-
-**解决方法**：
-1. 改用网页授权方式（1000次/天）
-2. 重新运行 `gemini-cli auth`
-
-### 问题4：环境变量不生效
-
-**原因**：配置文件没有重新加载
-
-**解决方法**：
-
-```bash
-# macOS/Linux
-source ~/.bashrc  # 或 source ~/.zshrc
-
-# Windows
-# 重启PowerShell或CMD
-```
-
-### 问题5：orchestrate.sh权限被拒绝
-
-**原因**：脚本没有执行权限
-
-**解决方法**：
-
-```bash
-chmod +x .claude/skills/ai-orchestrator/scripts/orchestrate.sh
-```
-
----
-
 ## 下一步
 
 安装完成后，继续阅读：
 - [使用说明](usage.md) - 学习如何使用5种集成方式
 - [方式对比](comparison.md) - 选择最适合你的方式
-- [踩坑记录](troubleshooting.md) - 常见问题解决方案
 
 ---
 
-**有问题？**
+## 遇到问题？
 
-- 查看 [踩坑记录](troubleshooting.md)
-- 提Issue：https://github.com/your-repo/issues
-- 加入讨论：（关注评论区群组链接）
+安装过程中的常见问题（如command not found、权限拒绝、配额超限等）都在踩坑记录里有详细解决方案：
+
+👉 **[踩坑记录](troubleshooting.md)** - 12个常见问题的完整解决方案

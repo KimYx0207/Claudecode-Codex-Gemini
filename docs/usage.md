@@ -350,6 +350,47 @@ Codex：[读取conv_123，看到Gemini的审查意见]
 
 **核心价值**：`conversationId`让三个AI共享同一个上下文文件（`~/.mcp-context/conv_123.json`），实现真正的协作！
 
+### 高级配置：多模型协作规范
+
+如果你想让Claude Code自动按照最佳实践调用Codex和Gemini，可以在 `~/.claude/CLAUDE.md` 中添加协作规范：
+
+```markdown
+## 多模型协作规范
+
+### 核心原则
+Claude作为主架构师，根据以下分工调度Codex和Gemini：
+
+1. **需求分析阶段**：将用户需求同时告知codex/gemini，进行迭代争辩、互为补充
+2. **编码阶段**：向codex/gemini索要代码原型（unified diff patch），以此为参考重写生产级代码
+3. **审查阶段**：完成编码后，必须使用codex review代码改动
+
+### 模型分工
+
+| 模型 | 擅长领域 | 限制 |
+|------|----------|------|
+| **Codex** | 后端逻辑、Bug定位、代码审查 | sandbox需设为read-only |
+| **Gemini** | 前端设计、需求清晰化、任务规划 | 上下文仅32k，禁止后端代码 |
+
+### 调用规范
+
+**Codex调用**：
+- 每次调用保存返回的SESSION_ID
+- 使用sandbox="read-only"避免意外修改
+- 擅长：后端逻辑、精准定位、Debug分析、代码审查
+
+**Gemini调用**：
+- 捕获返回的SESSION_ID用于多轮对话
+- 严禁让Gemini编写复杂后端逻辑
+- 擅长：需求清晰化、任务规划、前端原型（CSS/HTML/UI组件）
+
+### 协作流程示例
+
+1. 用户提出需求 → Claude分析
+2. Claude将需求转发给Codex/Gemini讨论
+3. 获取代码原型 → Claude重写为生产级代码
+4. 实施修改 → Codex审查 → 迭代完善
+```
+
 ---
 
 ## 方式4：Subagent（最灵活）
