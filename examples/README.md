@@ -62,11 +62,11 @@
 ```bash
 # 案例1：登录功能（Command方式）
 cd examples/login-feature
-/ai-team "$(cat task-description.txt)"
+/kim-team "$(cat task-description.txt)"
 
 # 案例2：RBAC系统（Skill方式）
 cd examples/rbac-system
-../../.claude/skills/ai-orchestrator/scripts/orchestrate.sh "$(cat task-description.txt)"
+../../.claude/skills/kim-orchestrator/scripts/orchestrate.sh "$(cat task-description.txt)"
 
 # 案例3：模块重构（MCP方式，需要先配置MCP Server）
 cd examples/module-refactor
@@ -78,13 +78,13 @@ cd examples/module-refactor
 将你的输出与案例提供的参考代码对比：
 ```bash
 # 你的输出
-cat .ai-orchestrator/phase2_code.md
+cat .kim-orchestrator/phase2_code.md
 
 # 参考代码
 cat examples/login-feature/expected-output/phase2_code.md
 
 # 对比差异
-diff .ai-orchestrator/phase2_code.md examples/login-feature/expected-output/phase2_code.md
+diff .kim-orchestrator/phase2_code.md examples/login-feature/expected-output/phase2_code.md
 ```
 
 ---

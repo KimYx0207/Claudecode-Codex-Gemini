@@ -1,5 +1,5 @@
 [project]
-name = "ai-orchestrator"
+name = "kim-orchestrator"
 version = "1.0.0"
 description = "AI Multi-Engine Orchestration System - Claude Code + Codex + Gemini"
 readme = "README.md"
@@ -38,9 +38,9 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/your-repo/ai-orchestrator"
-Documentation = "https://github.com/your-repo/ai-orchestrator/docs"
-Issues = "https://github.com/your-repo/ai-orchestrator/issues"
+Homepage = "https://github.com/your-repo/kim-orchestrator"
+Documentation = "https://github.com/your-repo/kim-orchestrator/docs"
+Issues = "https://github.com/your-repo/kim-orchestrator/issues"
 
 [build-system]
 requires = ["setuptools>=61.0", "wheel"]

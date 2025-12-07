@@ -27,7 +27,7 @@
 #### 步骤1：确认配置文件存在
 
 ```bash
-ls .claude/commands/ai-team.md
+ls .claude/commands/kim-team.md
 ```
 
 如果不存在，请先完成项目安装。
@@ -39,7 +39,7 @@ ls .claude/commands/ai-team.md
 claude
 
 # 使用Slash命令
-/ai-team "实现用户登录功能"
+/kim-team "实现用户登录功能"
 ```
 
 #### 步骤3：等待执行
@@ -55,7 +55,7 @@ Claude会自动：
 #### 示例1：简单功能
 
 ```bash
-/ai-team "实现一个计算器类，支持加减乘除"
+/kim-team "实现一个计算器类，支持加减乘除"
 ```
 
 **预计时间**：3-5分钟
@@ -63,7 +63,7 @@ Claude会自动：
 #### 示例2：完整模块
 
 ```bash
-/ai-team "实现JWT登录功能，包含注册、登录、token刷新、密码重置"
+/kim-team "实现JWT登录功能，包含注册、登录、token刷新、密码重置"
 ```
 
 **预计时间**：5-10分钟
@@ -71,19 +71,19 @@ Claude会自动：
 #### 示例3：系统设计
 
 ```bash
-/ai-team "设计RESTful API接口，包含用户管理、文章管理、评论管理"
+/kim-team "设计RESTful API接口，包含用户管理、文章管理、评论管理"
 ```
 
 **预计时间**：7-15分钟
 
 ### 查看结果
 
-所有中间文件保存在 `.ai-orchestrator/` 目录：
+所有中间文件保存在 `.kim-orchestrator/` 目录：
 
 ```bash
-cat .ai-orchestrator/result.md  # 查看最终报告
-cat .ai-orchestrator/phase2_code.md  # 查看生成的代码
-cat .ai-orchestrator/phase3_review.md  # 查看审查报告
+cat .kim-orchestrator/result.md  # 查看最终报告
+cat .kim-orchestrator/phase2_code.md  # 查看生成的代码
+cat .kim-orchestrator/phase3_review.md  # 查看审查报告
 ```
 
 ---
@@ -103,18 +103,18 @@ cat .ai-orchestrator/phase3_review.md  # 查看审查报告
 #### 步骤1：确认Skill配置
 
 ```bash
-ls .claude/skills/ai-orchestrator/skill.yaml
-ls .claude/skills/ai-orchestrator/scripts/orchestrate.sh
+ls .claude/skills/kim-orchestrator/skill.yaml
+ls .claude/skills/kim-orchestrator/scripts/orchestrate.sh
 ```
 
 #### 步骤2：直接执行脚本
 
 ```bash
 # 给脚本添加执行权限（首次使用）
-chmod +x .claude/skills/ai-orchestrator/scripts/orchestrate.sh
+chmod +x .claude/skills/kim-orchestrator/scripts/orchestrate.sh
 
 # 执行任务
-./.claude/skills/ai-orchestrator/scripts/orchestrate.sh "RBAC权限系统"
+./.claude/skills/kim-orchestrator/scripts/orchestrate.sh "RBAC权限系统"
 ```
 
 #### 步骤3：查看执行日志
@@ -134,7 +134,7 @@ chmod +x .claude/skills/ai-orchestrator/scripts/orchestrate.sh
 ### 生成的文件
 
 ```bash
-.ai-orchestrator/
+.kim-orchestrator/
 ├── phase1_requirements.json  # Claude的需求分析（JSON格式）
 ├── phase2_code.md            # Codex生成的代码（Markdown）
 ├── phase3_review.md          # Gemini的审查报告（Markdown）
@@ -190,13 +190,13 @@ chmod +x .claude/skills/ai-orchestrator/scripts/orchestrate.sh
 
 ```bash
 # 打开最终报告
-cat .ai-orchestrator/result.md
+cat .kim-orchestrator/result.md
 
 # 或用VS Code打开
-code .ai-orchestrator/result.md
+code .kim-orchestrator/result.md
 
 # 查看执行日志
-cat .ai-orchestrator/orchestration.log
+cat .kim-orchestrator/orchestration.log
 ```
 
 ---

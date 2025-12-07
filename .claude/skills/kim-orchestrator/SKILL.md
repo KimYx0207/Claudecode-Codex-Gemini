@@ -1,5 +1,5 @@
 ---
-name: ai-orchestrator
+name: kim-orchestrator
 description: |
   多AI协作编排技能 - 自动协调Claude、Codex、Gemini完成需求分析→代码生成→代码审查工作流。
 
@@ -12,7 +12,7 @@ description: |
 
   【显式触发词】
   - "AI编排"、"ai编排"、"多AI协作"、"三引擎"、"三AI"
-  - "codex"、"gemini"、"ai team"、"ai-team"
+  - "codex"、"gemini"、"kim team"、"kim-team"
   - "协作开发"、"编排流程"
 
   【任务类型触发】
@@ -61,7 +61,7 @@ allowed-tools: Read, Write, Bash, Task
 }
 ```
 
-保存到：`.ai-orchestrator/phase1_requirements.json`
+保存到：`.kim-orchestrator/phase1_requirements.json`
 
 ### 阶段2：代码生成（Codex）
 
@@ -73,7 +73,7 @@ allowed-tools: Read, Write, Bash, Task
 - conversationId: "ai_team_<timestamp>"
 ```
 
-保存到：`.ai-orchestrator/phase2_code.md`
+保存到：`.kim-orchestrator/phase2_code.md`
 
 ### 阶段3：代码审查（Gemini）
 
@@ -85,11 +85,11 @@ allowed-tools: Read, Write, Bash, Task
 - reviewMode: true
 ```
 
-保存到：`.ai-orchestrator/phase3_review.md`
+保存到：`.kim-orchestrator/phase3_review.md`
 
 ## 配置
 
-工作目录：`.ai-orchestrator/`
+工作目录：`.kim-orchestrator/`
 
 ## 依赖
 

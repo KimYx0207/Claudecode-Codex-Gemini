@@ -367,7 +367,7 @@ tail -f ~/.mcp-context/gemini/mcp-server.log
 
 配置成功后，你可以：
 
-1. **创建AI编排Command**：参考 `.claude/commands/ai-team.md`
+1. **创建AI编排Command**：参考 `.claude/commands/kim-team.md`
 2. **使用MCP工具**：在Claude Code中直接调用 `mcp__mcpServers__codex` 和 `mcp__mcpServers__gemini`
 3. **查看使用文档**：
    - Codex MCP Server: `mcp-servers/codex-server/README.md`

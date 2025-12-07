@@ -25,7 +25,7 @@
 ### 使用Skill方式
 
 ```bash
-./.claude/skills/ai-orchestrator/scripts/orchestrate.sh "设计并实现RBAC权限系统，包含以下需求：
+./.claude/skills/kim-orchestrator/scripts/orchestrate.sh "设计并实现RBAC权限系统，包含以下需求：
 
 ## 核心功能
 

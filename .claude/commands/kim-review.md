@@ -1,10 +1,10 @@
 ---
-description: AI代码审查命令 - Claude需求理解 + Gemini深度审查（审查现有代码，无生成）
+description: Kim代码审查命令 - Claude需求理解 + Gemini深度审查（审查现有代码，无生成）
 allowed-tools: Read, Write, Edit, Bash, Task, Glob, Grep
 argument-hint: [代码文件路径或审查需求]
 ---
 
-# AI代码审查命令（Claude + Gemini）
+# Kim代码审查命令（Claude + Gemini）
 
 > 代码审查模式：理解代码 → 深度审查，专注于代码质量和安全
 
@@ -25,16 +25,24 @@ Claude Code的Write工具要求：**写入文件前必须先读取它**。对于
 
 ## 执行流程
 
-### 阶段0：初始化工作目录
+### 阶段0.1：健康检查
+
+**参考 `.claude/skills/kim-orchestrator/prompts/health-check.md` 执行MCP健康检查。**
+
+在开始前检测 `mcp__gemini__gemini` 工具是否可用：
+- ✅ 可用 → 继续执行
+- ❌ 不可用 → 显示修复指南，询问是否用Claude降级执行
+
+### 阶段0.2：初始化工作目录
 
 ```bash
-mkdir -p .ai-orchestrator && echo "" > .ai-orchestrator/phase1_analysis.json && echo "" > .ai-orchestrator/phase2_review.md && echo "" > .ai-orchestrator/result.md
+mkdir -p .kim-orchestrator && echo "" > .kim-orchestrator/phase1_analysis.json && echo "" > .kim-orchestrator/phase2_review.md && echo "" > .kim-orchestrator/result.md
 ```
 
 然后读取这些文件：
-- Read .ai-orchestrator/phase1_analysis.json
-- Read .ai-orchestrator/phase2_review.md
-- Read .ai-orchestrator/result.md
+- Read .kim-orchestrator/phase1_analysis.json
+- Read .kim-orchestrator/phase2_review.md
+- Read .kim-orchestrator/result.md
 
 ### 阶段1：代码理解与分析（你自己完成）
 
@@ -65,7 +73,7 @@ mkdir -p .ai-orchestrator && echo "" > .ai-orchestrator/phase1_analysis.json && 
 }
 ```
 
-保存到 `.ai-orchestrator/phase1_analysis.json`
+保存到 `.kim-orchestrator/phase1_analysis.json`
 
 ### 阶段2：深度代码审查（调用Gemini MCP Server）
 
@@ -74,7 +82,7 @@ mkdir -p .ai-orchestrator && echo "" > .ai-orchestrator/phase1_analysis.json && 
 调用Gemini进行深度审查：
 - prompt: 包含代码内容和phase1_analysis.json的审查要点
 - reviewMode: true（启用专业审查模式）
-- conversationId: "ai_review_" + 当前时间戳
+- conversationId: "kim_review_" + 当前时间戳
 
 **审查维度**：
 1. **代码质量**：可读性、命名规范、代码复杂度
@@ -83,12 +91,12 @@ mkdir -p .ai-orchestrator && echo "" > .ai-orchestrator/phase1_analysis.json && 
 4. **可维护性**：模块化、依赖关系、测试覆盖
 5. **最佳实践**：设计模式、SOLID原则、错误处理
 
-将响应保存到 `.ai-orchestrator/phase2_review.md`
+将响应保存到 `.kim-orchestrator/phase2_review.md`
 
 ### 阶段3：生成审查报告
 
 ```markdown
-# AI代码审查报告（Claude + Gemini）
+# Kim代码审查报告（Claude + Gemini）
 
 **审查目标**: $ARGUMENTS
 **审查时间**: [当前时间]
@@ -126,11 +134,11 @@ mkdir -p .ai-orchestrator && echo "" > .ai-orchestrator/phase1_analysis.json && 
 ## 下一步建议
 
 1. 优先修复严重问题
-2. 使用 `/ai-code` 生成修复代码
-3. 修复后再次运行 `/ai-review` 验证
+2. 使用 `/kim-code` 生成修复代码
+3. 修复后再次运行 `/kim-review` 验证
 ```
 
-保存到 `.ai-orchestrator/result.md` 并展示给用户。
+保存到 `.kim-orchestrator/result.md` 并展示给用户。
 
 ---
 
@@ -138,30 +146,43 @@ mkdir -p .ai-orchestrator && echo "" > .ai-orchestrator/phase1_analysis.json && 
 
 ```bash
 # 审查单个文件
-/ai-review "src/auth/utils.py"
+/kim-review "src/auth/utils.py"
 
 # 审查整个模块
-/ai-review "审查src/auth/目录下的所有认证代码"
+/kim-review "审查src/auth/目录下的所有认证代码"
 
 # 安全审计
-/ai-review "对用户输入处理代码进行安全审计"
+/kim-review "对用户输入处理代码进行安全审计"
 
 # 性能审查
-/ai-review "审查数据库查询性能，检查N+1问题"
+/kim-review "审查数据库查询性能，检查N+1问题"
 ```
 
 ---
 
 ## 适用场景
 
-✅ **适合使用 /ai-review**：
+✅ **适合使用 /kim-review**：
 - 代码质量检查
 - 安全漏洞审计
 - 性能问题排查
 - Code Review辅助
 - 技术债务评估
 
-❌ **建议使用 /ai-team**：
+❌ **建议使用 /kim-team**：
 - 需要生成新代码
 - 完整的开发流程
 - 需要Codex参与的任务
+
+---
+
+## 🔗 相关命令推荐
+
+执行完成后，根据审查结果推荐下一步：
+
+| 场景 | 推荐命令 | 原因 |
+|------|----------|------|
+| 发现需要修复的问题 | `/kim-code` | 生成修复代码 |
+| 需要修复后再审查 | `/kim-review` | 验证修复效果 |
+| 需要完整重构 | `/kim-team` | 重构+审查一条龙 |
+| 需要拆解修复任务 | `/kim-plan` | 规划修复工作 |

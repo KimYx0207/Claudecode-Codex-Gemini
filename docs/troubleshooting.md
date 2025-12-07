@@ -216,8 +216,8 @@ claude -p "Hello Claude, 请回复'连接成功'"
 
 **现象**：
 ```bash
-$ ./.claude/skills/ai-orchestrator/scripts/orchestrate.sh "test"
--bash: ./.claude/skills/ai-orchestrator/scripts/orchestrate.sh: Permission denied
+$ ./.claude/skills/kim-orchestrator/scripts/orchestrate.sh "test"
+-bash: ./.claude/skills/kim-orchestrator/scripts/orchestrate.sh: Permission denied
 ```
 
 **原因**：脚本没有执行权限
@@ -225,14 +225,14 @@ $ ./.claude/skills/ai-orchestrator/scripts/orchestrate.sh "test"
 **解决方案**：
 ```bash
 # 添加执行权限
-chmod +x .claude/skills/ai-orchestrator/scripts/orchestrate.sh
+chmod +x .claude/skills/kim-orchestrator/scripts/orchestrate.sh
 
 # 验证权限
-ls -l .claude/skills/ai-orchestrator/scripts/orchestrate.sh
+ls -l .claude/skills/kim-orchestrator/scripts/orchestrate.sh
 # 应该显示 -rwxr-xr-x
 
 # 重新执行
-./.claude/skills/ai-orchestrator/scripts/orchestrate.sh "test"
+./.claude/skills/kim-orchestrator/scripts/orchestrate.sh "test"
 ```
 
 ---
@@ -273,7 +273,7 @@ codex exec "print('hello')"
 
 **步骤3：查看详细错误日志**
 ```bash
-cat .ai-orchestrator/orchestration.log
+cat .kim-orchestrator/orchestration.log
 ```
 
 **步骤4：简化提示词测试**
@@ -290,7 +290,7 @@ cat .ai-orchestrator/orchestration.log
 
 **现象**：
 ```bash
-$ cat .ai-orchestrator/phase3_review.md
+$ cat .kim-orchestrator/phase3_review.md
 ⚠️ Gemini CLI未安装，无法进行代码审查
 ```
 
@@ -463,7 +463,7 @@ node --version
 **策略2：让Gemini审查后再用**
 ```bash
 # 查看审查报告
-cat .ai-orchestrator/phase3_review.md
+cat .kim-orchestrator/phase3_review.md
 
 # 根据Gemini的建议修复代码
 ```
@@ -489,7 +489,7 @@ cat .ai-orchestrator/phase3_review.md
 
 1. **查看详细日志**
    ```bash
-   cat .ai-orchestrator/orchestration.log
+   cat .kim-orchestrator/orchestration.log
    ```
 
 2. **提Issue**

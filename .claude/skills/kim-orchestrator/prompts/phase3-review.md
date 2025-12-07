@@ -265,7 +265,7 @@ profile_map = {p.user_id: p for p in profiles}
 
 ## 输出位置
 
-将上述Markdown保存到：`.ai-orchestrator/phase3_review.md`
+将上述Markdown保存到：`.kim-orchestrator/phase3_review.md`
 
 ## 审查注意事项
 

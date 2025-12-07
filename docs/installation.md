@@ -296,13 +296,13 @@ gemini -p "你好，Gemini！请回复'配置成功'。"
 
 ```bash
 # 进入项目目录
-cd path/to/ai-orchestrator
+cd path/to/kim-orchestrator
 
 # 测试Command方式（在Claude Code里执行）
-/ai-team "写一个Hello World程序"
+/kim-team "写一个Hello World程序"
 
 # 测试Skill方式
-./.claude/skills/ai-orchestrator/scripts/orchestrate.sh "写一个Hello World程序"
+./.claude/skills/kim-orchestrator/scripts/orchestrate.sh "写一个Hello World程序"
 ```
 
 如果所有步骤都成功，恭喜你安装完成！🎉

@@ -22,7 +22,7 @@ show_logo() {
 # 全局配置
 # ============================================
 TASK="${1:-未指定任务}"
-OUTPUT_DIR=".ai-orchestrator"
+OUTPUT_DIR=".kim-orchestrator"
 LOG_FILE="$OUTPUT_DIR/orchestration.log"
 RESULT_FILE="$OUTPUT_DIR/result.md"
 

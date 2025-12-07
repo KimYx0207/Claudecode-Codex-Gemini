@@ -145,7 +145,7 @@ pytest tests/
 
 ## 输出位置
 
-将上述Markdown保存到：`.ai-orchestrator/phase2_code.md`
+将上述Markdown保存到：`.kim-orchestrator/phase2_code.md`
 
 ## 代码示例参考
 

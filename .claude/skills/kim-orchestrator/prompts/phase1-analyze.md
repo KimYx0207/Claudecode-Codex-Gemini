@@ -125,7 +125,7 @@ project/
 
 ## 输出位置
 
-将上述JSON保存到：`.ai-orchestrator/phase1_requirements.json`
+将上述JSON保存到：`.kim-orchestrator/phase1_requirements.json`
 
 ## 注意事项
 
