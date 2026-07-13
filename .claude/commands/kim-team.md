@@ -1,7 +1,7 @@
 ---
 description: Kim多引擎协作命令 - 协调Claude、Codex、Gemini完成需求分析→代码生成→代码审查
 allowed-tools: Read, Write, Edit, Bash, Task
-argument-hint: [任务描述]
+argument-hint: "[任务描述]"
 ---
 
 # Kim团队协作命令（基于MCP）

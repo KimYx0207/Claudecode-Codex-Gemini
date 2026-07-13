@@ -1,7 +1,7 @@
 ---
 description: Kim代码审查命令 - Claude需求理解 + Gemini深度审查（审查现有代码，无生成）
 allowed-tools: Read, Write, Edit, Bash, Task, Glob, Grep
-argument-hint: [代码文件路径或审查需求]
+argument-hint: "[代码文件路径或审查需求]"
 ---
 
 # Kim代码审查命令（Claude + Gemini）

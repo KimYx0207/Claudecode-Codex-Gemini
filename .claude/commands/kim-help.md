@@ -1,7 +1,7 @@
 ---
 description: Kim帮助指南命令 - 查看所有命令、根据需求推荐命令
 allowed-tools: Read, Glob
-argument-hint: [可选：命令名称或需求描述]
+argument-hint: "[可选：命令名称或需求描述]"
 ---
 
 # Kim帮助指南命令

@@ -1,7 +1,7 @@
 ---
 description: Kim环境配置命令 - 一键检测和配置Claude Code + Codex + Gemini开发环境
 allowed-tools: Read, Write, Edit, Bash
-argument-hint: [可选：check/fix/full]
+argument-hint: "[可选：check/fix/full]"
 ---
 
 # Kim环境配置命令

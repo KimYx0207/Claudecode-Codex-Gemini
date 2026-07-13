@@ -25,7 +25,7 @@ project-root/
 description: 简明描述此命令的用途和调用时机（必需，最多255字符）
 model: sonnet                           # 可选：sonnet/opus/haiku
 allowed-tools: Bash, Read, Write        # 可选：逗号分隔的工具列表
-argument-hint: [参数描述]                # 可选：CLI风格的参数提示
+argument-hint: "[参数描述]                # 可选：CLI风格的参数提示"
 ---
 
 # 命令内容

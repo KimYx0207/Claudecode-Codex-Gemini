@@ -1,7 +1,7 @@
 ---
 description: Kim CRUD生成命令 - 根据表名和字段生成完整增删改查代码
 allowed-tools: Read, Write, Edit, Bash, Task
-argument-hint: [表名和字段描述]
+argument-hint: "[表名和字段描述]"
 ---
 
 # Kim CRUD生成命令
