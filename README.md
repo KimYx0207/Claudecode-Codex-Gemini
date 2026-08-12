@@ -2,10 +2,10 @@
 
 <div align="center">
 
-![GitHub stars](https://img.shields.io/github/stars/KimYx0207/Claudecode-Codex-Gemini?style=social)
-![GitHub forks](https://img.shields.io/github/forks/KimYx0207/Claudecode-Codex-Gemini?style=social)
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Language](https://img.shields.io/badge/language-Python-orange.svg)
+[![GitHub stars](https://img.shields.io/github/stars/KimYx0207/Claudecode-Codex-Gemini?style=social)](https://github.com/KimYx0207/Claudecode-Codex-Gemini)
+[![GitHub forks](https://img.shields.io/github/forks/KimYx0207/Claudecode-Codex-Gemini?style=social)](https://github.com/KimYx0207/Claudecode-Codex-Gemini)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/KimYx0207/Claudecode-Codex-Gemini)
+[![Language](https://img.shields.io/badge/language-Python-orange.svg)](https://github.com/KimYx0207/Claudecode-Codex-Gemini)
 
 **让 Claude Code 自动协调多个 AI 工具（Sonnet、Codex、Gemini），全流程自动化**
 
