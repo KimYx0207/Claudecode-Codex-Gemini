@@ -7,10 +7,18 @@ FastAPI-compatible dependencies for obtaining a database session.
 from __future__ import annotations
 
 import os
-from typing import AsyncGenerator
+from typing import TYPE_CHECKING
 
-from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession, async_sessionmaker, create_async_engine
+from sqlalchemy.ext.asyncio import (
+    AsyncEngine,
+    AsyncSession,
+    async_sessionmaker,
+    create_async_engine,
+)
 from sqlalchemy.orm import DeclarativeBase
+
+if TYPE_CHECKING:
+    from collections.abc import AsyncGenerator
 
 
 class Base(DeclarativeBase):
@@ -56,4 +64,3 @@ async def get_db() -> AsyncGenerator[AsyncSession, None]:
             yield session
         finally:
             await session.close()
-

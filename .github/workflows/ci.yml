@@ -40,7 +40,7 @@ jobs:
 
       - name: Run Ruff linter
         run: |
-          ruff check src/ tests/
+          ruff check --no-fix src/ tests/
 
       - name: Run Ruff formatter check
         run: |

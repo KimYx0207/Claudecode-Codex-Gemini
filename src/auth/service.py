@@ -5,17 +5,24 @@ Provides user registration, authentication, token issuance and refresh handling.
 
 from __future__ import annotations
 
-from datetime import datetime, timedelta, timezone
-from typing import Tuple
+from datetime import UTC, datetime
+from typing import TYPE_CHECKING
 
 from fastapi import HTTPException, status
 from sqlalchemy import or_, select
-from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.auth.models import RefreshToken, User
-from src.auth.schemas import UserRegisterRequest
-from src.auth.utils import create_access_token, create_refresh_token, get_password_hash, verify_password
-from src.core.config import settings
+from src.auth.utils import (
+    create_access_token,
+    create_refresh_token,
+    get_password_hash,
+    verify_password,
+)
+
+if TYPE_CHECKING:
+    from sqlalchemy.ext.asyncio import AsyncSession
+
+    from src.auth.schemas import UserRegisterRequest
 
 
 async def register_user(db: AsyncSession, user_data: UserRegisterRequest) -> User:
@@ -79,13 +86,11 @@ async def authenticate_user(db: AsyncSession, email: str, password: str) -> User
             detail="Incorrect email or password",
         )
     if not user.is_active:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST, detail="Inactive user account"
-        )
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Inactive user account")
     return user
 
 
-def create_tokens(user: User) -> Tuple[str, str]:
+def create_tokens(user: User) -> tuple[str, str]:
     """Create access and refresh JWT tokens for a user.
 
     Note: Persistence of refresh tokens is handled by the caller.
@@ -102,7 +107,7 @@ def create_tokens(user: User) -> Tuple[str, str]:
     return access_token, refresh_token
 
 
-async def refresh_access_token(db: AsyncSession, refresh_token: str) -> Tuple[str, str]:
+async def refresh_access_token(db: AsyncSession, refresh_token: str) -> tuple[str, str]:
     """Issue a new access token using a valid refresh token.
 
     Verifies the provided refresh token against the database for revocation and
@@ -128,7 +133,7 @@ async def refresh_access_token(db: AsyncSession, refresh_token: str) -> Tuple[st
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid refresh token"
         )
-    if stored.expires_at <= datetime.now(timezone.utc):
+    if stored.expires_at <= datetime.now(UTC):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Refresh token expired"
         )
@@ -138,9 +143,7 @@ async def refresh_access_token(db: AsyncSession, refresh_token: str) -> Tuple[st
     user_res = await db.execute(user_stmt)
     user = user_res.scalar_one_or_none()
     if not user:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST, detail="User not found"
-        )
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="User not found")
 
     new_access_token = create_access_token({"sub": user.id, "email": user.email})
     return new_access_token, refresh_token
@@ -161,10 +164,7 @@ async def revoke_refresh_token(db: AsyncSession, token: str) -> None:
     result = await db.execute(stmt)
     stored = result.scalar_one_or_none()
     if not stored:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail="Refresh token not found"
-        )
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Refresh token not found")
     stored.revoked = True
     db.add(stored)
     await db.commit()
-

@@ -24,7 +24,9 @@ dependencies = [
     "aiosqlite>=0.19.0",
     "python-jose[cryptography]>=3.3.0",
     "passlib[bcrypt]>=1.7.4",
-    "pydantic>=2.0.0",
+    # Passlib 1.7.x probes long passwords during backend detection; bcrypt 5 rejects them.
+    "bcrypt>=4.0.1,<5",
+    "pydantic[email]>=2.0.0",
 ]
 
 [project.optional-dependencies]
@@ -34,6 +36,8 @@ dev = [
     "pytest-asyncio>=0.23.0",
     "pytest-cov>=4.1.0",
     "mypy>=1.8.0",
+    "types-passlib",
+    "types-python-jose",
     "ruff>=0.2.0",
     "httpx>=0.26.0",  # for testing FastAPI
 ]
@@ -62,14 +66,6 @@ warn_unused_ignores = true
 show_error_codes = true
 show_column_numbers = true
 pretty = true
-
-# Per-module overrides for third-party libs without stubs
-[[tool.mypy.overrides]]
-module = [
-    "jose.*",
-    "passlib.*",
-]
-ignore_missing_imports = true
 
 # Ruff configuration - fast Python linter
 [tool.ruff]
@@ -100,6 +96,11 @@ ignore = [
 
 [tool.ruff.lint.isort]
 known-first-party = ["src"]
+
+# These frameworks evaluate annotations at runtime; keep required imports available.
+[tool.ruff.lint.flake8-type-checking]
+runtime-evaluated-base-classes = ["pydantic.BaseModel", "src.core.database.Base"]
+runtime-evaluated-decorators = ["fastapi.APIRouter.get", "fastapi.APIRouter.post"]
 
 [tool.ruff.format]
 quote-style = "double"
