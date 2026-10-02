@@ -1,7 +1,7 @@
 ---
 description: Kim截图转代码命令 - Gemini看图分析 + Claude技术方案 + Codex代码生成 + Gemini代码审查
 allowed-tools: Read, Write, Edit, Bash, Task
-argument-hint: [截图路径或URL]
+argument-hint: "[截图路径或URL]"
 ---
 
 # Kim截图转代码命令（四阶段三引擎）

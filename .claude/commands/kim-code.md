@@ -1,7 +1,7 @@
 ---
 description: Kim双引擎开发命令 - Claude需求分析 + Codex代码生成（快速开发模式，无审查）
 allowed-tools: Read, Write, Edit, Bash, Task
-argument-hint: [任务描述]
+argument-hint: "[任务描述]"
 ---
 
 # Kim代码生成命令（Claude + Codex）

@@ -1,7 +1,7 @@
 ---
 description: Kim表单生成命令 - 根据字段描述生成React/Vue表单组件（含校验逻辑）
 allowed-tools: Read, Write, Edit, Bash, Task, Glob
-argument-hint: [表单字段描述]
+argument-hint: "[表单字段描述]"
 ---
 
 # Kim表单生成命令
