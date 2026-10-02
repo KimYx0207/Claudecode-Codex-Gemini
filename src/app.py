@@ -11,7 +11,6 @@ from fastapi import FastAPI
 from src.auth.router import router as auth_router
 from src.core.database import Base, engine
 
-
 app = FastAPI(title="Auth Service")
 app.include_router(auth_router)
 
@@ -29,4 +28,3 @@ async def root() -> dict[str, str]:
     """Health check endpoint."""
 
     return {"status": "ok"}
-

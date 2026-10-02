@@ -5,12 +5,13 @@ from __future__ import annotations
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy import select
-from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.ext.asyncio import (
+    AsyncSession,  # noqa: TC002 - FastAPI resolves dependency annotations
+)
 
 from src.auth.models import User
 from src.auth.utils import decode_token
 from src.core.database import get_db
-
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")
 
@@ -33,9 +34,7 @@ async def get_current_user(
 
     payload = decode_token(token)
     if payload.get("type") != "access":
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid access token"
-        )
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid access token")
 
     user_id = payload.get("sub")
     if not user_id:
@@ -51,4 +50,3 @@ async def get_current_user(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found or inactive"
         )
     return user
-
