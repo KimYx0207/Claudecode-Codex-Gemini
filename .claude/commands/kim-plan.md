@@ -1,7 +1,7 @@
 ---
 description: Kim需求拆解命令 - 把大需求拆解为可执行的任务列表，含依赖和优先级
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep
-argument-hint: [需求描述]
+argument-hint: "[需求描述]"
 ---
 
 # Kim需求拆解命令

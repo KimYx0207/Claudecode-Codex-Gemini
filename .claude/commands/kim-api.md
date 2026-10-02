@@ -1,7 +1,7 @@
 ---
 description: Kim API生成命令 - 根据接口描述生成完整API端点（路由+校验+文档）
 allowed-tools: Read, Write, Edit, Bash, Task
-argument-hint: [接口名称和参数描述]
+argument-hint: "[接口名称和参数描述]"
 ---
 
 # Kim API生成命令
