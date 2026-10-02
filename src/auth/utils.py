@@ -5,15 +5,14 @@ Includes password hashing/verification and JWT creation/decoding helpers.
 
 from __future__ import annotations
 
-from datetime import datetime, timedelta, timezone
-from typing import Any, Dict, Optional
+from datetime import UTC, datetime, timedelta
+from typing import Any
 
 from fastapi import HTTPException, status
 from jose import JWTError, jwt
 from passlib.context import CryptContext
 
 from src.core.config import settings
-
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -45,7 +44,7 @@ def get_password_hash(password: str) -> str:
     return pwd_context.hash(password)
 
 
-def _expire_time(delta: Optional[timedelta]) -> datetime:
+def _expire_time(delta: timedelta | None) -> datetime:
     """Compute an expiration datetime in UTC.
 
     Args:
@@ -55,11 +54,11 @@ def _expire_time(delta: Optional[timedelta]) -> datetime:
         datetime: The resulting expiration time.
     """
 
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     return now + (delta or timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES))
 
 
-def create_access_token(data: Dict[str, Any], expires_delta: Optional[timedelta] = None) -> str:
+def create_access_token(data: dict[str, Any], expires_delta: timedelta | None = None) -> str:
     """Create a signed JWT access token.
 
     Args:
@@ -77,9 +76,7 @@ def create_access_token(data: Dict[str, Any], expires_delta: Optional[timedelta]
     return encoded_jwt
 
 
-def create_refresh_token(
-    data: Dict[str, Any], expires_delta: Optional[timedelta] = None
-) -> str:
+def create_refresh_token(data: dict[str, Any], expires_delta: timedelta | None = None) -> str:
     """Create a signed JWT refresh token.
 
     Args:
@@ -92,13 +89,13 @@ def create_refresh_token(
 
     to_encode = data.copy()
     default_delta = timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS)
-    expire = datetime.now(timezone.utc) + (expires_delta or default_delta)
+    expire = datetime.now(UTC) + (expires_delta or default_delta)
     to_encode.update({"exp": expire, "type": "refresh"})
     encoded_jwt = jwt.encode(to_encode, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
     return encoded_jwt
 
 
-def decode_token(token: str) -> Dict[str, Any]:
+def decode_token(token: str) -> dict[str, Any]:
     """Decode and validate a JWT token.
 
     Args:
@@ -119,4 +116,3 @@ def decode_token(token: str) -> Dict[str, Any]:
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Could not validate credentials",
         ) from None
-

@@ -30,7 +30,7 @@ class Settings:
     REFRESH_TOKEN_EXPIRE_DAYS: int = 7
 
     @staticmethod
-    def load() -> "Settings":
+    def load() -> Settings:
         """Load settings from environment variables.
 
         Returns:

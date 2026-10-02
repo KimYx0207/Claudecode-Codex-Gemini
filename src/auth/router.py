@@ -9,9 +9,9 @@ Endpoints:
 
 from __future__ import annotations
 
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.auth.dependencies import get_current_user
@@ -23,10 +23,9 @@ from src.auth.schemas import (
     UserRegisterRequest,
     UserResponse,
 )
-from src.auth.service import authenticate_user, create_tokens, register_user, refresh_access_token
+from src.auth.service import authenticate_user, create_tokens, refresh_access_token, register_user
 from src.core.config import settings
 from src.core.database import get_db
-
 
 router = APIRouter(tags=["auth"])
 
@@ -67,10 +66,8 @@ async def login_endpoint(
     access_token, refresh_token = create_tokens(user)
 
     # Persist refresh token for revocation tracking
-    expires_at = datetime.now(timezone.utc) + timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS)
-    db.add(
-        RefreshToken(token=refresh_token, user_id=user.id, expires_at=expires_at, revoked=False)
-    )
+    expires_at = datetime.now(UTC) + timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS)
+    db.add(RefreshToken(token=refresh_token, user_id=user.id, expires_at=expires_at, revoked=False))
     await db.commit()
 
     return TokenResponse(
